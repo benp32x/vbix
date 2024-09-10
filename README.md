@@ -46,7 +46,7 @@ vbix -i # Information
 
 # Installation and Setup
 
-I have previously used a full "installer" script, which did all of the setup, along with reinstall/uninstall modes, and generating certain dependancies. As features were added this script grew to exceed 800 lines of code. I want people to easily give vbix a try, and a large file of operations with the expectation that you blindly run them... can be a bit of a barrier to entry.
+I have previously used a full "installer" script, which did all of the setup, along with reinstall/uninstall modes, and generating certain dependencies. As features were added this script grew to exceed 800 lines of code. I want people to easily give vbix a try, and a large file of operations with the expectation that you blindly run them... can be a bit of a barrier to entry.
 
 At its core, vbix just needs a few directories and a file for the port blocks. That is all.
 
@@ -57,14 +57,14 @@ So, let's keep it simple:
 ### Create Directories
 
 ```shell
-mkdir '~/vbix/conf'
+mkdir '~/vbix/vbix_conf'
 mkdir '~/vbix/vbix_iso'
 mkdir '~/vbix/vbix_img'
 ```
 
 ### Generate Port Blocks for NAT based VMs
 
-Run this interactive script to generate the available port blocks for your VMs. It will generate a .csv file and .md5 checksum. This checksum is checked and re-calculated everytime vbix creates a new VM to ensure the file has not been malformed during an interrupted create operation.
+Run this interactive script to generate the available port blocks for your VMs. It will generate a .csv file and .md5 checksum. This checksum is checked and re-calculated every time vbix creates a new VM to ensure the file has not been malformed during an interrupted create operation.
 
 ```shell
 bash vbix_ports.sh
@@ -73,9 +73,9 @@ bash vbix_ports.sh
 ### Set Permissions
 
 ```shell
-chmod 770 '~/vbix/conf'
-chmod 660 '~/vbix/conf/vbix_ports.csv'
-chmod 660 '~/vbix/conf/vbix_ports.md5'
+chmod 770 '~/vbix/vbix_conf'
+chmod 660 '~/vbix/vbix_conf/vbix_ports.csv'
+chmod 660 '~/vbix/vbix_conf/vbix_ports.md5'
 
 chmod 770 '~/vbix/vbix_iso'
 chmod 770 '~/vbix/vbix_img'
@@ -137,7 +137,7 @@ vboxmanage extpack uninstall "Oracle VM VirtualBox Extension Pack"
 
 SSH is relied on here for encryption.
 
-Rather than publically exposing multiple RDP ports, leaving the potential for user error on TLS Certs, we just use SSH to create a secure tunnel for accessing RDP.
+Rather than publicly expose multiple RDP ports, leaving the potential for user error on TLS Certs, SSH is used to create a secure tunnel for accessing RDP.
 
 1.) Run the following command on your local machine:
 
@@ -166,7 +166,7 @@ vbox_ = assigned data that virtualbox will eventually read as input in a command
 
 ### Function format
 
-I write so much bash code for my other projects, I grew tired of trying to uniquely name vars within functions. Function arguments are setup as local vars with arg1=$1, arg2=$2, etc; and a simple comment for context. This isn't something I do in other languages, and I only do this sort of thing in my bash scripts. I consider it a quirk of my bash code, but I find it maintains consistancy with function format, lowers cognitive load when debugging, and makes writing functions faster.
+I write so much bash code for my other projects, I grew tired of trying to uniquely name vars within functions. Function arguments are setup as local vars with arg1=$1, arg2=$2, etc; and a simple comment for context. This isn't something I do in other languages, and I only do this sort of thing in my bash scripts. I consider it a quirk of my bash code, but I find it maintains consistency with function format, lowers cognitive load when debugging, and makes writing functions faster.
 
 ```shell
 function pad_stuff() {
@@ -197,7 +197,7 @@ This is done for debugging and feature implementation. I need to be able to test
 
 If virtual machines already exist on the system in the default "Virtualbox VMs" folder, vbix can manage these vms as well. The only thing to take under consideration, is if you have pre-existing NAT based vms, they may have port conflicts with the new VMs created by vbix depending on the port range you allocate to vbix. You just have to make sure they are not in conflict.
 
-vbix is afterall, just executing native virtualbox commands. So running `vbix -m`, and managing a previously created vm via vbix, will work just fine.
+vbix is after all, just executing native virtualbox commands. So running `vbix -m`, and managing a previously created vm via vbix, will work just fine.
 
 ### Scope
 
@@ -241,6 +241,6 @@ NOTE: It must be stated that it has been quite a while since I have fully tested
 
 # Gotchas
 
-Technology is always changing, so sometimes things break. Linux Mint 22 Wilma recently released. I was testing an install of Mint not realising the ISO I downloaded was "version 22", which had JUST been released within the hour of me kicking off an install in virtualbox. I was getting a black screen on RDP connect, and I could not for the life of me figure out why. I eventually figured out that it was a brand new release of MINT, and days later when proper release notes were posted for Mint 22, it highlights all types of Virtualbox caveates.
+Technology is always changing, so sometimes things break. Linux Mint 22 Wilma recently released. I was testing an install of Mint not realising the ISO I downloaded was "version 22", which had JUST been released within the hour of me kicking off an install in virtualbox. I was getting a black screen on RDP connect, and I could not for the life of me figure out why. I eventually figured out that it was a brand new release of MINT, and days later when proper release notes were posted for Mint 22, it highlights all types of Virtualbox caveats.
 
-I say this merely to highlight "when its just not working", it probobly isn't the script, and most likely has to do with everything else going on between your client machine, virtualbox's version, how it was compiled, and the iso/img you are trying to run. Just be patient if you run into an issue, and take all the technology involved into consideration.
+I say this merely to highlight "when its just not working", it probably isn't the script, and most likely has to do with everything else going on between your client machine, virtualbox's version, how it was compiled, and the iso/img you are trying to run. Just be patient if you run into an issue, and take all the technology involved into consideration.

@@ -4,9 +4,15 @@
 
 vbix provides a text based interface for managing virtualbox based virtual machines.
 
-I needed a bare metal server, running most of my applications on the performant parent Linux OS, but also needed a few small virtual machines for other services, and even the occasional vm for "curious experiments". I didn't necessarily require a hypervisor, and Cloud Service costs might have exceeded a decent dedicated server. The VM's were for non-container situations. So, I started writing bash code against virtualbox commands, and this script gradually evolved.
+I needed a bare metal server, running most of my applications on the performant parent Linux OS, but also a few small virtual machines for other services, along with the occasional vm for "curious experiments". I didn't necessarily require a hypervisor, and Cloud Service costs might have exceeded a decent dedicated server. The VM's were for non-container situations. So, I started writing bash code against virtualbox commands, and this script gradually evolved.
 
-If you need a basic management tool for Virtualbox over command line, then "vbix" is a great option.
+Script written by Ben Pekarek  
+License: GPLv3  
+Latest Version: v0.6.0  
+Initial Public Release: v0.6.0 September 2024  
+First Version: v0.0.1 December 2014
+
+vbix wraps a text based interface around vboxmanage commands, and adds a comma delimited set of port blocks for NAT based VM's to checkout on creation.
 
 Some key features of vbix:
 
@@ -15,7 +21,15 @@ Some key features of vbix:
 * Supports building from .iso's or exported vm images
 * The VM creation process can be very fast, proving that text based interfaces can reign supreme
 
-vbix features a management interface, making it convenient to check the status of your running vms, and manage them with the following operations:
+vbix has 3 main modes:
+
+```shell
+vbix -c # Create
+vbix -m # Manage
+vbix -i # Information
+```
+
+Available options for `vbix -m`:
 
 ```
   [ 1] Run the VM        (power on                 )
@@ -30,27 +44,7 @@ vbix features a management interface, making it convenient to check the status o
   [ 9] Disc Drive        (insert/remove media      )
 ```
 
-I consider vbix to be not only a useful script, but also a great example of how empowering BASH can be in "personal" computing.
-
-### Author / Version
-
-Script written by Ben Pekarek
-License: GPLv3
-Latest Version: v0.6.0
-Initial Public Release: v0.6.0 September 2024
-First Version: v0.0.1 December 2014
-
-# What does vbix do?
-
-vbix wraps a text based interface around vboxmanage commands, and adds a comma delimited set of port blocks for NAT based VM's to checkout on creation.
-
-vbix has 3 main modes:
-
-```shell
-vbix -c # Create
-vbix -m # Manage
-vbix -i # Information
-```
+I consider vbix to be not only a useful script, but also a great example of how empowering BASH can be in "personal" computing. If you need a basic management tool for Virtualbox over command line, then "vbix" is a great option.
 
 # Installation and Setup
 

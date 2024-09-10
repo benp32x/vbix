@@ -32,7 +32,15 @@ vbix features a management interface, making it convenient to check the status o
 
 I consider vbix to be not only a useful script, but also a great example of how empowering BASH can be in "personal" computing.
 
-# How does it work?
+### Author / Version
+
+Script written by Ben Pekarek
+License: GPLv3
+Latest Version: v0.6.0
+Initial Public Release: v0.6.0 September 2024
+First Version: v0.0.1 December 2014
+
+# What does vbix do?
 
 vbix wraps a text based interface around vboxmanage commands, and adds a comma delimited set of port blocks for NAT based VM's to checkout on creation.
 
